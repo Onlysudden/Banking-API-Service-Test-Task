@@ -12,7 +12,7 @@ class OfferSerializer(serializers.ModelSerializer):
         fields = ['id', 'payment', 'bank_name', 'term_min',
                   'term_max', 'rate_min', 'rate_max', 'payment_min', 'payment_max']
     
-    def get_payment(self, obj):
+    def get_payment(self, obj: Offer) -> int:
         """Функция проверки входных данных для расчета месячного платежа"""
 
         try:
@@ -35,7 +35,7 @@ class OfferSerializer(serializers.ModelSerializer):
             raise f'Unexpected {error}, {type(error)}'
     
 
-    def payment_calculate(self, obj):
+    def payment_calculate(self, obj: Offer) -> int:
         """Функция для расчета ежемесячного платежа"""
 
         request = self.context.get('request')
